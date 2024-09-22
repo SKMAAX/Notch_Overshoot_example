@@ -18,11 +18,7 @@ zeta1 = 1; % 幅パラメータ
 Notch1 = tf([1 d1*2*zeta1*omega_n, omega_n^2],[1 2*zeta1*omega_n, omega_n^2]);
 text1 = append('(', poly2str(Notch1.Numerator{1},'s'), ')/(',  poly2str(Notch1.Denominator{1},'s'),')');
 bodemag(Notch1,'b'); legend('オーバーシュートしないノッチフィルタ','Location','southeast');  grid on;
-% h = findobj(gcf,'type','line'); 
-% set(h,'linewidth',4); %プロットの線を太くする
 step(Notch1,'b',0.03); legend('オーバーシュートしないノッチフィルタ','Location','southeast');
-% h = findobj(gcf,'type','line'); 
-% set(h,'linewidth',4); %プロットの線を太くする
 pzmap(Notch1,'b'); legend;
 %% 
 % オーバーシュートするノッチフィルタ
@@ -34,18 +30,12 @@ zeta2 = 0.6; % 幅パラメータ
 
 Notch2 = tf([1 d2*2*zeta2*omega_n, omega_n^2],[1 2*zeta2*omega_n, omega_n^2]);
 bodemag(Notch2,'r'); legend('オーバーシュートするノッチフィルタ','Location','southeast'); grid on;
-% h = findobj(gcf,'type','line'); 
-% set(h,'linewidth',4); %プロットの線を太くする
 step(Notch2,'r',0.03); legend('オーバーシュートするノッチフィルタ','Location','southeast');
-% h = findobj(gcf,'type','line'); 
-% set(h,'linewidth',4); %プロットの線を太くする
 pzmap(Notch2,'r'); legend;
 %% 
 % 2つのノッチフィルタ比較
 
 bode(Notch1,'b',Notch2,'r'); legend({'①オーバーシュートしない','②オーバーシュートする'},'Location','southeast'); grid on;
-% h = findobj(gcf,'type','line'); %プロットの線を太くする
-% set(h,'linewidth',4);
 pzmap(Notch1,'b',Notch2,'r'); legend({'オーバーシュートしないノッチフィルタ','オーバーシュートするノッチフィルタ'},'Location','southwest');
 %% 
 % オーバーシュートするノッチフィルタは分母分子で分解すると、
@@ -70,8 +60,6 @@ step(Notch12,'g',0.03); legend;
 pzmap(Notch12,'g'); legend;
 
 bodemag(Notch1,Notch2,Notch12,'g'); legend({'①オーバーシュートしない','②オーバーシュートする','①のノッチ深い版。オーバーシュートしない'},'Location','southeast'); grid on;
-% h = findobj(gcf,'type','line'); %プロットの線を太くする
-% set(h,'linewidth',2);
 %% 
 % 極に虚数成分あってもオーバーシュートしない、の例
 % 
@@ -79,10 +67,6 @@ bodemag(Notch1,Notch2,Notch12,'g'); legend({'①オーバーシュートしな�
 
 G5_ptn1 = CalcG5(3,4,2);
 pzmap(G5_ptn1)
-% h = findobj(gcf,'type','line'); %プロットの線を太くする
-% set(h,'linewidth',2);
 xlim([-3.5 0.5])
 ylim([-4.5 4.5])
 step(G5_ptn1,5)
-% h = findobj(gcf,'type','line'); %プロットの線を太くする
-% set(h,'linewidth',2);
